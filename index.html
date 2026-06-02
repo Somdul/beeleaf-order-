@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--gold:#ECBF59;--gd:#D4A832;--dark:#252623;--cream:#F1EFED;--bg:#f5f4f2;--white:#ffffff;--border:#e0ddd8;--border2:#ccc9c2;--text:#1a1917;--text2:#6b6760;--text3:#9c9890;--rad:10px;--rad-sm:7px}
+:root{--gold:#ECBF59;--gd:#D4A832;--dark:#252623;--bg:#f5f4f2;--white:#ffffff;--border:#e0ddd8;--border2:#ccc9c2;--text:#1a1917;--text2:#6b6760;--text3:#9c9890;--rad:10px;--rad-sm:7px}
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Sarabun',sans-serif;background:var(--bg);min-height:100vh;padding:24px 16px;color:var(--text)}
 .page{max-width:640px;margin:0 auto}
@@ -15,7 +15,6 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);min-height:100vh;padd
 .fi{width:38px;height:38px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
 .fh h1{color:var(--gold);font-size:16px;font-weight:600;letter-spacing:0.03em}
 .fh p{color:rgba(241,239,237,0.45);font-size:12px;margin-top:2px}
-.live-dot{width:7px;height:7px;border-radius:50%;background:#5DCAA5;flex-shrink:0}
 .fb{background:var(--white);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--rad) var(--rad);padding:20px 22px}
 .slb{font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border)}
 .sec{margin-bottom:20px}
@@ -45,13 +44,32 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);min-height:100vh;padd
 .qi{width:46px;text-align:center;border:1px solid var(--border) !important;border-radius:var(--rad-sm) !important;padding:5px 6px !important;font-size:14px;font-weight:600;font-family:'Sarabun',sans-serif}
 .bw{flex:1;height:4px;background:var(--border);border-radius:2px;overflow:hidden}
 .bb{height:100%;border-radius:2px}
+
+/* discount toggle */
+.disc-toggle{display:flex;align-items:center;justify-content:space-between;background:var(--bg);border:1px solid var(--border);border-radius:var(--rad-sm);padding:12px 14px;margin-bottom:10px;cursor:pointer;transition:border-color 0.15s,background 0.15s;user-select:none}
+.disc-toggle:hover{border-color:var(--border2)}
+.disc-toggle.on{background:rgba(236,191,89,0.08);border-color:var(--gold)}
+.disc-toggle-left{display:flex;align-items:center;gap:10px}
+.disc-toggle-icon{width:32px;height:32px;border-radius:50%;background:var(--border);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;transition:background 0.15s}
+.disc-toggle.on .disc-toggle-icon{background:var(--gold)}
+.disc-toggle-label{font-size:14px;font-weight:500;color:var(--text)}
+.disc-toggle-sub{font-size:12px;color:var(--text2);margin-top:1px}
+.disc-switch{width:40px;height:22px;border-radius:11px;background:var(--border2);position:relative;transition:background 0.2s;flex-shrink:0}
+.disc-switch.on{background:var(--gd)}
+.disc-switch-knob{position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:white;transition:left 0.2s;box-shadow:0 1px 3px rgba(0,0,0,0.15)}
+.disc-switch.on .disc-switch-knob{left:21px}
+.disc-note-wrap{margin-bottom:10px}
+
 .smbox{background:var(--dark);border-radius:var(--rad-sm);padding:14px 18px;margin-bottom:10px}
 .sr{display:flex;justify-content:space-between;align-items:center;font-size:13px;margin-bottom:7px}
 .sr:last-child{margin-bottom:0}
 .sr .la{color:rgba(241,239,237,0.55)}.sr .va{color:#F1EFED;font-weight:500}
+.sr.dc{overflow:hidden;transition:max-height 0.25s,opacity 0.25s,margin 0.25s;max-height:40px;opacity:1}
+.sr.dc.hidden{max-height:0;opacity:0;margin-bottom:0}
 .sr.dc .la{color:#9FE1CB}.sr.dc .va{color:#9FE1CB}
 .sr.tt{margin-top:10px;padding-top:10px;border-top:1px solid rgba(241,239,237,0.12);font-size:15px}
 .sr.tt .la{color:var(--gold)}.sr.tt .va{color:var(--gold);font-size:16px;font-weight:600}
+
 .slip-a{border:2px dashed var(--border2);border-radius:var(--rad-sm);padding:16px;text-align:center;cursor:pointer;position:relative;background:var(--bg);transition:border-color 0.15s}
 .slip-a:hover{border-color:var(--gold)}
 .slip-a input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
@@ -59,7 +77,7 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);min-height:100vh;padd
 .slip-rm{margin-left:auto;font-size:12px;color:var(--text2);cursor:pointer;border:1px solid var(--border);border-radius:var(--rad-sm);padding:3px 10px;background:var(--white);font-family:'Sarabun',sans-serif}
 .slip-rm:hover{color:#a32d2d;border-color:#a32d2d}
 .btn-row{display:flex;gap:10px;margin-top:18px;padding-top:16px;border-top:1px solid var(--border)}
-.bp{flex:1;padding:11px 18px;background:var(--dark);color:var(--gold);border:none;border-radius:var(--rad-sm);font-size:14px;font-weight:600;cursor:pointer;font-family:'Sarabun',sans-serif;transition:opacity 0.15s;letter-spacing:0.02em}
+.bp{flex:1;padding:11px 18px;background:var(--dark);color:var(--gold);border:none;border-radius:var(--rad-sm);font-size:14px;font-weight:600;cursor:pointer;font-family:'Sarabun',sans-serif;transition:opacity 0.15s}
 .bp:hover{opacity:0.82}.bp:disabled{opacity:0.5;cursor:not-allowed}
 .bs{padding:11px 16px;background:none;color:var(--text2);border:1px solid var(--border2);border-radius:var(--rad-sm);font-size:14px;cursor:pointer;font-family:'Sarabun',sans-serif;transition:background 0.15s}
 .bs:hover{background:var(--bg)}
@@ -75,10 +93,11 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);min-height:100vh;padd
   <div class="fh">
     <div class="fi">🍯</div>
     <div style="flex:1"><h1>Beeleaf — Order Form</h1><p>ฟอร์มรับออเดอร์ · Jul 2026</p></div>
-    <div class="live-dot"></div>
+    <div style="width:7px;height:7px;border-radius:50%;background:#5DCAA5"></div>
     <span style="font-size:12px;color:#9FE1CB;margin-left:5px">Live · Google Sheets</span>
   </div>
   <div class="fb">
+
     <div class="sec">
       <div class="slb">ข้อมูลลูกค้า</div>
       <div class="r2">
@@ -92,23 +111,45 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);min-height:100vh;padd
       </div>
       <div class="r1"><div class="fg"><label>ที่อยู่จัดส่ง<span class="req">*</span></label><textarea id="fad" placeholder="บ้านเลขที่ ถนน แขวง/ตำบล เขต/อำเภอ จังหวัด รหัสไปรษณีย์"></textarea></div></div>
     </div>
+
     <div class="sec">
       <div class="slb">สต็อคคงเหลือ</div>
       <div class="sc-grid" id="sc-grid"></div>
     </div>
+
     <div class="sec">
       <div class="slb">รายการน้ำผึ้ง</div>
       <div class="hl" id="hl"></div>
     </div>
+
+    <div class="sec">
+      <div class="slb">ส่วนลด</div>
+      <div class="disc-toggle" id="disc-toggle" onclick="toggleDisc()">
+        <div class="disc-toggle-left">
+          <div class="disc-toggle-icon" id="disc-icon">🏷</div>
+          <div>
+            <div class="disc-toggle-label">ใช้ส่วนลด 30%</div>
+            <div class="disc-toggle-sub" id="disc-sub">ปิดอยู่ — คิดราคาเต็ม</div>
+          </div>
+        </div>
+        <div class="disc-switch" id="disc-switch"><div class="disc-switch-knob"></div></div>
+      </div>
+      <div class="disc-note-wrap">
+        <div class="fg"><label>หมายเหตุ / เงื่อนไขพิเศษ</label><input type="text" id="fno" placeholder="เช่น Wholesale, คูปอง, โปรโมชัน..."></div>
+      </div>
+    </div>
+
     <div class="sec">
       <div class="smbox">
         <div class="sr"><span class="la">จำนวนรวม</span><span class="va" id="su">0 ขวด</span></div>
         <div class="sr"><span class="la">ราคาก่อนลด</span><span class="va" id="ss">฿0</span></div>
-        <div class="sr dc"><span class="la">ส่วนลด 30%</span><span class="va" id="sd">-฿0</span></div>
+        <div class="sr dc hidden" id="disc-row">
+          <span class="la">ส่วนลด 30%</span><span class="va" id="sd">-฿0</span>
+        </div>
         <div class="sr tt"><span class="la">ราคาสุทธิ</span><span class="va" id="sn">฿0</span></div>
       </div>
-      <div class="r1"><div class="fg"><label>หมายเหตุ / เงื่อนไขพิเศษ</label><input type="text" id="fno" placeholder="เช่น Wholesale, คูปอง..."></div></div>
     </div>
+
     <div class="sec">
       <div class="slb">หลักฐานการชำระเงิน</div>
       <div class="slip-a" id="sla">
@@ -118,12 +159,13 @@ body{font-family:'Sarabun',sans-serif;background:var(--bg);min-height:100vh;padd
           <div style="font-size:13px;color:#6b6760">แนบสลิปโอนเงิน <span style="color:#D4A832;font-weight:500">คลิกหรือลากไฟล์มาวาง</span></div>
         </div>
         <div class="slip-pv" id="spv">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D4A832" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><polyline points="9 15 12 18 15 15"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D4A832" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
           <span id="snm"></span>
           <button class="slip-rm" onclick="rSlip(event)">ลบ</button>
         </div>
       </div>
     </div>
+
     <div class="btn-row">
       <button class="bs" onclick="doReset()">↺ ล้างข้อมูล</button>
       <button class="bp" id="sbtn" onclick="doSubmit()">✓ บันทึกออเดอร์ → Sheets</button>
@@ -148,10 +190,29 @@ var PR=[
 var IS={BL001:180,BL002:200,BL003:200,BL004:100,BL005:100,BL006:100,BL007:100};
 var ST={};for(var k in IS)ST[k]=IS[k];
 var QT={};for(var i=0;i<PR.length;i++)QT[PR[i].id]=0;
+var discOn=false;
 
 function fmt(n){return '฿'+Math.round(n).toLocaleString('th-TH');}
 function scls(n){return n>30?'cg':n>0?'cy':'cr';}
 function bcol(n){return n>30?'#639922':n>0?'#BA7517':'#E24B4A';}
+
+function toggleDisc(){
+  discOn=!discOn;
+  var tog=document.getElementById('disc-toggle');
+  var sw=document.getElementById('disc-switch');
+  var sub=document.getElementById('disc-sub');
+  var row=document.getElementById('disc-row');
+  if(discOn){
+    tog.classList.add('on');sw.classList.add('on');
+    sub.textContent='เปิดอยู่ — ลด 30% จากราคาเต็ม';
+    row.classList.remove('hidden');
+  } else {
+    tog.classList.remove('on');sw.classList.remove('on');
+    sub.textContent='ปิดอยู่ — คิดราคาเต็ม';
+    row.classList.add('hidden');
+  }
+  calc();
+}
 
 function rSC(){
   var h='';
@@ -201,7 +262,8 @@ function clamp(id){
 function calc(){
   var u=0,s=0;
   for(var i=0;i<PR.length;i++){var v=parseInt(document.getElementById('q-'+PR[i].id).value)||0;QT[PR[i].id]=v;u+=v;s+=v*PR[i].p;}
-  var d=Math.round(s*0.3),n=s-d;
+  var d=discOn?Math.round(s*0.3):0;
+  var n=s-d;
   document.getElementById('su').textContent=u+' ขวด';
   document.getElementById('ss').textContent=fmt(s);
   document.getElementById('sd').textContent='-'+fmt(d);
@@ -232,6 +294,7 @@ function doReset(){
   document.getElementById('fd').value=now.toISOString().slice(0,10);
   document.getElementById('ft').value=('0'+now.getHours()).slice(-2)+':'+('0'+now.getMinutes()).slice(-2);
   for(var j=0;j<PR.length;j++){document.getElementById('q-'+PR[j].id).value=0;QT[PR[j].id]=0;document.getElementById('sub-'+PR[j].id).textContent='';document.getElementById('hc-'+PR[j].id).className='hc'+(ST[PR[j].id]<=0?' out':'');}
+  if(discOn)toggleDisc();
   calc();rSlip({stopPropagation:function(){}});hideBn();
 }
 function doSubmit(){
@@ -245,7 +308,8 @@ function doSubmit(){
   if(!name||!phone||!date||!addr||!admin){showEr('กรุณากรอกข้อมูลที่จำเป็น: ชื่อ, เบอร์โทร, วันที่, ที่อยู่, ผู้รับผิดชอบ');return;}
   if(total===0){showEr('กรุณาเลือกน้ำผึ้งอย่างน้อย 1 ขวด');return;}
   var sub=0;for(var j=0;j<PR.length;j++)sub+=QT[PR[j].id]*PR[j].p;
-  var disc=Math.round(sub*0.3),net=sub-disc;
+  var disc=discOn?Math.round(sub*0.3):0;
+  var net=sub-disc;
   var slipName='';var sf=document.getElementById('sf').files;if(sf&&sf[0])slipName=sf[0].name;
   var payload=JSON.stringify({
     orderDate:date,orderTime:document.getElementById('ft').value,
@@ -253,7 +317,7 @@ function doSubmit(){
     qty_bl001:QT.BL001,qty_bl002:QT.BL002,qty_bl003:QT.BL003,
     qty_bl004:QT.BL004,qty_bl005:QT.BL005,qty_bl006:QT.BL006,qty_bl007:QT.BL007,
     totalUnits:total,subtotal:sub,discount:disc,netPrice:net,
-    discountNote:document.getElementById('fno').value,
+    discountNote:document.getElementById('fno').value||( discOn?'ส่วนลด 30%':'ราคาเต็ม'),
     slipFilename:slipName,admin:admin
   });
   var btn=document.getElementById('sbtn');
@@ -263,7 +327,7 @@ function doSubmit(){
     .then(function(){
       for(var i=0;i<PR.length;i++)ST[PR[i].id]=Math.max(0,ST[PR[i].id]-QT[PR[i].id]);
       rSC();rHL();hideBn();
-      showOk('บันทึกเรียบร้อย · '+name+' · '+total+' ขวด · '+fmt(net));
+      showOk('บันทึกเรียบร้อย · '+name+' · '+total+' ขวด · '+fmt(net)+(discOn?' (ลด 30%)':''));
       doReset();
     })
     .catch(function(){hideBn();showEr('เชื่อมต่อไม่ได้ — ตรวจสอบ Permission ใน Apps Script');})
